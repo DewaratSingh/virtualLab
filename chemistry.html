@@ -181,6 +181,8 @@
           "
         ></div>
         <img
+          name="S"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -201,6 +203,8 @@
           "
         ></div>
         <img
+          name="H2O"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -221,6 +225,8 @@
           "
         ></div>
         <img
+          name="HCL"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -241,6 +247,8 @@
           "
         ></div>
         <img
+          name="H2SO4"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -261,6 +269,8 @@
           "
         ></div>
         <img
+          name="HNO3"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -282,6 +292,8 @@
           "
         ></div>
         <img
+          name="NaOH"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -303,6 +315,8 @@
           "
         ></div>
         <img
+          name="KOH"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -324,6 +338,8 @@
           "
         ></div>
         <img
+          name="NaCl"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -344,6 +360,8 @@
           "
         ></div>
         <img
+          name="CuSO4"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -364,6 +382,8 @@
           "
         ></div>
         <img
+          name="NH3"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -384,6 +404,8 @@
           "
         ></div>
         <img
+          name="C2H5OH"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -404,6 +426,8 @@
           "
         ></div>
         <img
+          name="CH3COOH"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -425,6 +449,8 @@
           "
         ></div>
         <img
+          name="MgSO4"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -446,6 +472,8 @@
           "
         ></div>
         <img
+          name="CaCO3"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -467,6 +495,8 @@
           "
         ></div>
         <img
+          name="NaHCO3"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -487,6 +517,8 @@
           "
         ></div>
         <img
+          name="Phenolphthalein"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -507,6 +539,8 @@
           "
         ></div>
         <img
+          name=" Methyl Orange"
+          onclick="toolselect(this)"
           height="50px"
           width="50px"
           src="./chemAssest/Untitled18_20250914201028.png"
@@ -518,6 +552,11 @@
     <canvas id="canvas"></canvas>
 
     <script type="text/javascript" src="./cdn/imgObj.js"></script>
+    <script
+      type="text/javascript"
+      src="./chemistryTool/toolWithChemical.js"
+    ></script>
+
     <script>
       let canvas = document.getElementById("canvas");
       let ctx = canvas.getContext("2d");
@@ -531,7 +570,20 @@
       let offsetY = 0;
 
       function toolselect(self) {
-        tool.push(new ImgObj(500, 100, self.src, 100, 100));
+        if (self.src.includes("/chemAssest/Untitled18_20250914201028.png")) {
+          tool.push(
+            new ToolWChemical(
+              500,
+              100,
+              "./chemAssest/Untitled18_20250914223554.png",
+              100,
+              100,
+               "1"+self.name 
+            )
+          );
+        } else {
+          tool.push(new ToolWChemical(500, 100, self.src, 100, 100));
+        }
       }
       let camera = {
         x: 0,
@@ -544,6 +596,19 @@
         tool.forEach((obj) => {
           obj.draw(ctx, camera);
         });
+
+        for (let i = 0; i < tool.length; i++) {
+          for (let j = i + 1; j < tool.length; j++) {
+            if (polygonsCollide(tool[i].point(), tool[j].point())) {
+              if(tool[i].chemical=="empty"){
+                tool[i].chemical=""
+              }
+              tool[i].chemicalarr.push(tool[j].chemical)
+              tool.splice(j,1)
+            }
+          }
+        }
+
         requestAnimationFrame(animation);
       }
 
@@ -553,11 +618,9 @@
         const mouseX = e.clientX;
         const mouseY = e.clientY;
 
-        // loop from top-most object (last in array)
         for (let i = tool.length - 1; i >= 0; i--) {
           let obj = tool[i];
 
-          // simple bounding-box check
           if (
             mouseX > obj.x - obj.width / 2 &&
             mouseX < obj.x + obj.width / 2 &&
