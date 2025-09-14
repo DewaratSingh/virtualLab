@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Virtual Gravity Lab</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial;
+        overflow: hidden;
+        background-color: #1760bf;
+      }
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+
+      #itemBox {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 10;
+        width: 250px;
+        height: 90vh;
+        background: rgba(238, 232, 232, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 8px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        color: white;
+      }
+      #itemBox2 {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 10;
+        width: 250px;
+        height: 90vh;
+        background: rgba(238, 232, 232, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 8px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        color: white;
+      }
+      #itemBox label {
+        font-size: 14px;
+        margin-top: 5px;
+      }
+      #itemBox input,
+      #itemBox select {
+        width: 100%;
+        padding: 5px;
+        border-radius: 5px;
+        border: none;
+        margin-bottom: 5px;
+      }
+      #itemBox button {
+        font-size: 16px;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        background: #ff9800;
+        color: white;
+        transition: 0.3s;
+      }
+      #itemBox button:hover {
+        background: #e68a00;
+      }
+      #itemBox div.title {
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      #sizeInputs {
+        overflow: scroll;
+        text-align: center;
+      }
+      #sizeInputs div {
+        margin: 5px;
+      }
+      .your-div {
+        overflow: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .your-div::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="itemBox">
+      <div class="title">Virtual Chemistry Lab</div>
+      <div id="sizeInputs" class="your-div">
+        <div>
+          <img
+            onclick="toolselect(this)"
+            height="100px"
+            width="100px"
+            src="./chemAssest/Untitled18_20250914193621.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div>
+          <img
+            onclick="toolselect(this)"
+            height="100px"
+            width="100px"
+            src="./chemAssest/Untitled18_20250914193630.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div>
+          <img
+            onclick="toolselect(this)"
+            height="100px"
+            width="100px"
+            src="./chemAssest/Untitled18_20250914193642.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div>
+          <img
+            onclick="toolselect(this)"
+            height="100px"
+            width="100px"
+            src="./chemAssest/Untitled18_20250914193651.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div>
+          <img
+            onclick="toolselect(this)"
+            height="100px"
+            width="100px"
+            src="./chemAssest/Untitled18_20250914193701.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div>
+          <img
+            onclick="toolselect(this)"
+            height="100px"
+            width="100px"
+            src="./chemAssest/Untitled18_20250914193713.png"
+            alt=""
+            srcset=""
+          />
+        </div>
+      </div>
+    </div>
+
+    <div id="itemBox2">
+      <div id="sizeInputs" class="your-div">
+        Sulphur
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: yellow;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+
+        Water
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: transparent;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+
+        Hydrochloric Acid (HCl)
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: transparent;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+
+        Sulfuric Acid (H2SO4)
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: transparent;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+
+        Nitric Acid (HNO3)
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: transparent;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+
+        Sodium Hydroxide (NaOH)
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: white;
+            border: 1px solid #000;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+
+        Potassium Hydroxide (KOH)
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: white;
+            border: 1px solid #000;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+
+        Sodium Chloride (NaCl)
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: white;
+            border: 1px solid #000;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+
+        Copper Sulfate (CuSO4)
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: blue;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+
+        Ammonia (NH3)
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: transparent;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+
+        Ethanol (C2H5OH)
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: transparent;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+
+        Acetic Acid (CH3COOH)
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: transparent;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+
+        Magnesium Sulfate (MgSO4)
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: white;
+            border: 1px solid #000;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+
+        Calcium Carbonate (CaCO3)
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: white;
+            border: 1px solid #000;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+
+        Sodium Bicarbonate (NaHCO3)
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: white;
+            border: 1px solid #000;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+
+        Phenolphthalein
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: pink;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+
+        Methyl Orange
+        <div
+          style="
+            height: 20px;
+            width: 29px;
+            background-color: orange;
+            filter: blur(3px);
+            position: relative;
+            top: 50px;
+            left: 95px;
+          "
+        ></div>
+        <img
+          height="50px"
+          width="50px"
+          src="./chemAssest/Untitled18_20250914201028.png"
+          alt=""
+        />
+        <hr />
+      </div>
+    </div>
+    <canvas id="canvas"></canvas>
+
+    <script type="text/javascript" src="./cdn/imgObj.js"></script>
+    <script>
+      let canvas = document.getElementById("canvas");
+      let ctx = canvas.getContext("2d");
+
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+
+      let tool = [];
+      let draggingObj = null;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      function toolselect(self) {
+        tool.push(new ImgObj(500, 100, self.src, 100, 100));
+      }
+      let camera = {
+        x: 0,
+        y: 0,
+        range: { xFrom: -2000, xTo: 7000, yFrom: -2000, yTo: 7000 },
+      };
+
+      function animation() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        tool.forEach((obj) => {
+          obj.draw(ctx, camera);
+        });
+        requestAnimationFrame(animation);
+      }
+
+      animation();
+
+      canvas.addEventListener("mousedown", (e) => {
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        // loop from top-most object (last in array)
+        for (let i = tool.length - 1; i >= 0; i--) {
+          let obj = tool[i];
+
+          // simple bounding-box check
+          if (
+            mouseX > obj.x - obj.width / 2 &&
+            mouseX < obj.x + obj.width / 2 &&
+            mouseY > obj.y - obj.height / 2 &&
+            mouseY < obj.y + obj.height / 2
+          ) {
+            draggingObj = obj;
+            offsetX = mouseX - obj.x;
+            offsetY = mouseY - obj.y;
+            break;
+          }
+        }
+      });
+
+      canvas.addEventListener("mousemove", (e) => {
+        if (draggingObj) {
+          const mouseX = e.clientX;
+          const mouseY = e.clientY;
+
+          draggingObj.initialPo.X = mouseX - offsetX;
+          draggingObj.initialPo.Y = mouseY - offsetY;
+        }
+      });
+
+      canvas.addEventListener("mouseup", () => {
+        draggingObj = null;
+      });
+    </script>
+  </body>
+</html>
