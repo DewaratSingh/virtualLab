@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Laboratory</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background: #f4f8fc;
+      color: #333;
+    }
+
+    header {
+      background: #0056a6;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .lab-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px 0;
+      gap: 10px;
+    }
+
+    .lab-buttons button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background: #0073e6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .lab-buttons button:hover {
+      background: #005bb5;
+    }
+
+    section {
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #0056a6;
+      margin-bottom: 10px;
+    }
+
+    p, ul {
+      margin-bottom: 20px;
+    }
+
+    footer {
+      background: #0056a6;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🔬 Virtual Science Laboratory</h1>
+    <p>Learn. Explore. Experiment.</p>
+  </header>
+
+  <div class="lab-buttons">
+    <button onclick="goToLab('chemistry')">🧪 Chemistry Lab</button>
+    <button onclick="goToLab('physics')">⚡ Physics Lab</button>
+    <button onclick="goToLab('electrical')">🔌 Electrical Lab</button>
+    <button onclick="goToLab('biology')">🧬 Biology Lab</button>
+  </div>
+
+  <section>
+    <h2>About Virtual Lab</h2>
+    <p>
+      The Virtual Science Laboratory is designed to make learning interactive and fun. 
+      It allows students to perform experiments digitally without expensive equipment, 
+      ensuring safe and accessible learning for everyone.
+    </p>
+
+    <h2>Why Virtual Lab?</h2>
+    <p>
+      Many schools in rural and urban areas lack physical labs or proper resources. 
+      Our Virtual Lab bridges this gap by offering offline, low-cost, and 
+      easy-to-use simulations that teachers and students can rely on anytime.
+    </p>
+
+    <h2>Features</h2>
+    <ul>
+      <li>🎥 Interactive animations for each experiment</li>
+      <li>🎙 Voice explanations in local languages</li>
+      <li>📊 Track student performance & weak areas</li>
+      <li>💻 Teacher mode for projector-based demonstrations</li>
+      <li>📱 Available for both desktop and mobile (offline)</li>
+    </ul>
+
+    <h2>Subjects Covered</h2>
+    <ul>
+      <li>Physics – Mechanics, Electricity, Optics</li>
+      <li>Chemistry – Reactions, Titration, Acids & Bases</li>
+      <li>Biology – Cell structure, Microscopy, Human Body experiments</li>
+      <li>Electrical – Circuits, Electronics, Current & Voltage experiments</li>
+    </ul>
+
+    <h2>Our Mission</h2>
+    <p>
+      To make science education accessible to every student, irrespective of 
+      location or resources. With Virtual Lab, every classroom can become 
+      a science lab, and every student can perform hands-on experiments safely.
+    </p>
+
+    <h2>Get Started</h2>
+    <p>
+      Click below to explore experiments and start your learning journey:
+    </p>
+    <button onclick="window.location.href='experiments.html'" 
+            style="padding: 10px 20px; font-size: 1rem; background:#0073e6; color:white; border:none; border-radius:5px;">
+      🔗 Go to Experiments
+    </button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Virtual Lab | Making Science Accessible for All</p>
+  </footer>
+
+  <script>
+    function goToLab(type) {
+      // redirect to experiment page with selected lab type
+      window.location.href = "experiment.html?lab=" + type;
+    }
+  </script>
+</body>
+</html>
